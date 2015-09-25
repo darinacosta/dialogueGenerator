@@ -1,3 +1,8 @@
+/*
+  Author: Darin Acosta
+  License: ISC
+*/
+
 var app = angular.module("app", [])
 
 .controller('appCtrl', ['$scope', '$http', appCtrl]);

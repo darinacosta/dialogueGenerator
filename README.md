@@ -1,6 +1,8 @@
 #Dialogue Generator 
 
-This tool provides a user interface for building interactive text-based dialogue, and provides a framework for testing the dialogue. You can import and export JSON-formatted dialogue string. How you decide to parse the dialogue is up to you. "globals.js" provides an example of how this can be accomplished using jQuery.  
+This tool provides a user interface for building interactive text-based dialogue, and provides a framework for testing the dialogue. You can import and export JSON-formatted dialogue string. How you decide to parse the dialogue is up to you. "globals.js" provides an example of how this can be accomplished using jQuery. The tool was inspired by [this](www.thebotanistgame.com/blog/2015/02/28/dialogue-in-phaserjs.html) Botanist Game Blog post.
+
+Run "npm install" after forking to install the dependencies (Angular, Bootstrap, and jQuery). Or use the tool online [here](http://52.6.179.131/dg/).
 
 ##Creating dialogue
 
