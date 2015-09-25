@@ -5,8 +5,6 @@
   Module: Dialogue Manager
   Author: Darin Acosta
   License: ISC
-  Description: The dialogue manager is not a require js module -- it's a 
-  global object. All dialogue is managed in the DOM using jQuery.
 */
 
 dm = {};
