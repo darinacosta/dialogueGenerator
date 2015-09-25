@@ -1,0 +1,162 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="style.css" rel="stylesheet" media="screen">
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="globals.js"></script>
+  </head>
+  <body ng-app="app" ng-controller="appCtrl">
+    <div class="content-wrapper">
+      <div class="container">
+        <br>
+
+        <!--DIALOGUE NAME-->
+        <div class="col-md-12">
+          <div class="col-md-6">
+            <h2>Dialogue: <span ng-bind="dialogueJSON.name" style="font-style:italic"></span></h2>
+            <form novalidate>
+              Name: <input type="text" ng-model="dialogueJSON.name"> ID: <input type="text" ng-click="generateId()" ng-model="dialogueJSON.id">
+            </form>
+          </div>
+
+          <!--IMPORT JSON-->
+          <div class="col-md-6">
+            <h3>Import JSON</h3>
+            <textarea type="text" cols="50" rows="2" ng-model="importedJSON"></textarea> 
+            <button style="margin-bottom:22px" class="btn btn-primary" ng-click="importJSON()">Import</button>
+          </div>
+          <hr>
+        </div>
+        <hr>
+
+        <!--DIALOGUE ELEMENTS-->
+        <div ng-repeat="element in dialogueJSON.elements" class="col-md-12 dialogue-elements" ng-class-odd="'alternate-entry-outer'" ng-class-even="'even-entry-outer'" id="{{element.id}}">
+          <div class="row" style="cursor:pointer" ng-click="selectedTabToggle(element.id + '-inner')">
+
+            <!--DELETE DIALOGUE ELEMENT-->
+            <div style="position:absolute; right: 15; top: 10px; z-index: 9000;" ng-click="removeEntry($index)"><button class="btn btn-danger">DELETE</button></div>
+            <div class="col-md-4">
+              <h3><b><span ng-bind="element.id"></span></b></h3>
+            </div>
+            <div class="col-md-8" style="padding-top:12px;">
+              "<span ng-bind="element.text[0].substring(0, 90)"></span>..."
+            </div>
+          </div>
+          
+          <div id="{{element.id}}-inner" ng-class="{'hidden':selectedTab !== element.id + '-inner'}">
+            <!--PLAYER PORTRAIT-->
+            Portrait: <input type="text" ng-model="element.portrait">    
+
+            <!--TOGGLE TYPE-->
+            <label>
+                <input type="radio" name="chartype" value="player" ng-model="element.type">
+                Player
+            </label>
+            <label>
+              <input type="radio" name="chartype" value="npc" ng-model="element.type">
+                NPC
+            </label>
+            <label>
+              <input type="radio" name="chartype" value="omniscient" ng-model="element.type">
+                Omniscient
+            </label>
+            <hr>
+       
+            <!--ADD ELEMENT TEXT-->
+            <div class="dialogue-texts">
+              <div style="position:relative" ng-repeat="text in element.text track by $index">
+                <hr>
+                <div style="position:absolute; right: 15; top: 10px; z-index: 9000;" ng-click="removeText($parent.$index, $index)">
+                  <button class="btn btn-danger">Delete Text</button>
+                </div>
+                Text <span ng-bind="$index"></span>:<br>
+                <textarea type="text" cols="80" rows="4" maxlength="215" ng-model="element.text[$index]">
+                </textarea>
+              </div>
+            </div>
+            <br><br>
+            
+            <div>
+              <button class="btn" ng-click="addText(element.id)">Add Text</button>
+            </div>  
+
+            <!--ADD ELEMENT FOLLOWUPS-->
+            <hr>
+            <div class="dialogue-followups">
+              <div ng-repeat="followup in element.followups track by $index">
+                Followup <span ng-bind="$index"></span>:<br>
+                <input type="text" placeholder="{{dialogueJSON.id}}_" ng-model="element.followups[$index]">
+                <br>
+              </div>
+            </div>
+            <br><br>
+            
+            <div>
+              <button class="btn" ng-click="addFollowups(element.id)">Add Followup</button>
+            </div> 
+            <hr>
+
+            <!--ADD ELEMENT CHOICES-->
+            <div style="position:relative" ng-repeat="choice in element.choices track by $index">
+              <hr>
+              <div style="position:absolute; right: 15; top: 10px; z-index: 9000;" ng-click="removeChoice($parent.$index, $index)">
+                <button class="btn btn-danger">Delete Choice</button>
+              </div>
+              <br>
+              <h4>Choice <span ng-bind="$index"></span>:</h4><br>
+              Choice <span ng-bind="$index"></span> text:<br>
+              <textarea type="text" cols="80" rows="4" ng-model="element.choices[$index].text"></textarea>
+              <br>
+              Choice <span ng-bind="$index"></span> followup:
+              <input type="text" placeholder="{{dialogueJSON.id}}_" ng-model="element.choices[$index].followup"><br>
+              </textarea>
+              <hr>
+            </div>
+            <br><br>  
+
+            <div>
+              <button class="btn" ng-click="addChoice(element.id)">Add Choice</button>
+            </div>  
+
+            <!--ADD ITEMS-->
+            <hr>
+            <div class="dialogue-items">
+              <div ng-repeat="item in element.items track by $index">
+                Item <span ng-bind="$index"></span>:<br>
+                <input ng-model="element.items[$index]">
+                <br>
+              </div>
+            </div>
+            <br>
+            <div>
+              <button class="btn" ng-click="addItem(element.id)">Add Item</button>
+            </div>
+            <br><br>
+          </div> <!--END ELEMENT DIV-->
+        </div>  <!--END ELEMENT WRAPPER-->
+
+        <!--ADD-ELEMENT BUTTON-->
+        <div class="col-md-12" style="padding:20px;text-align:center">
+          <button class="btn btn-primary" ng-click="addDialogueElement()">Add Element</button>
+        </div>
+
+        <!--JSON OUTPUT AND TESTING-->
+        <div class="col-md-12" style="text-align:center;">
+          <h3>JSON Ouput</h3>
+          <button class="btn btn-primary" ng-click="generateDialogueJSONString()">
+            Generate JSON
+          </button>
+          <br><br>
+          <textarea cols="80" rows="4" ng-bind="dialogueJSONString">
+          </textarea>
+          <div class="col-md-12" style="padding:20px;text-align:center">
+            <button class="btn btn-primary" ng-click="testDialogue()">Test Dialogue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

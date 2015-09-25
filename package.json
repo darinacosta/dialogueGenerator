@@ -1,0 +1,24 @@
+{
+  "name": "dialogueGenerator",
+  "version": "1.0.0",
+  "description": "A tool for generating interactive text-based dialogue.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darinacosta/dialogueGenerator"
+  },
+  "author": "Darin Acosta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darinacosta/dialogueGenerator/issues"
+  },
+  "homepage": "https://github.com/darinacosta/dialogueGenerator",
+  "dependencies": {
+    "angular": "^1.5.0-beta.0",
+    "bootstrap": "^3.3.5",
+    "jquery": "^2.1.4"
+  }
+}
