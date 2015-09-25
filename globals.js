@@ -146,7 +146,7 @@ dm.advanceDialogueState = function(dialogueKey, cb){
   if (portrait){
     dialogue += '<div class="character-portrait-wrapper"><img class="character-portrait" src="./assets/i/portraits/' + portrait + '.png"></div>'
   } else if (!portrait && charType === 'player'){
-    dialogue += '<div class="character-portrait-wrapper"><img class="character-portrait" src="./assets/i/portraits/peppermountainwoman.png"></div>'
+    dialogue += '<div class="character-portrait-wrapper"><img class="character-portrait" src="./assets/i/portraits/million-portrait.png"></div>'
   };  
 
   /*
