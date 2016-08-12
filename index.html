@@ -5,12 +5,23 @@
     <link href="style.css" rel="stylesheet" media="screen">
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="globals.js"></script>
+    <style>
+      .footer{
+        background-color: #f5f5f5;
+      }
+    </style>
   </head>
   <body ng-app="app" ng-controller="appCtrl">
     <div class="content-wrapper">
+      <div style="text-align:center" class="jumbotron">
+        <h1>
+          Dialogue Generator
+        </h1>
+        <p>
+          Click <a href="https://github.com/darinacosta/dialogueGenerator/blob/master/README.md" target="_blank">here</a> for instructions.
+        </p>
+      </div>
       <div class="container">
-        <br>
-
         <!--DIALOGUE NAME-->
         <div class="col-md-12">
           <div class="col-md-6">
@@ -23,7 +34,7 @@
           <!--IMPORT JSON-->
           <div class="col-md-6">
             <h3>Import JSON</h3>
-            <textarea type="text" cols="50" rows="2" ng-model="importedJSON"></textarea> 
+            <textarea type="text" cols="50" rows="2" ng-model="importedJSON"></textarea>
             <button style="margin-bottom:22px" class="btn btn-primary" ng-click="importJSON()">Import</button>
           </div>
           <hr>
@@ -37,16 +48,16 @@
             <!--DELETE DIALOGUE ELEMENT-->
             <div style="position:absolute; right: 15; top: 10px; z-index: 9000;" ng-click="removeEntry($index)"><button class="btn btn-danger">DELETE</button></div>
             <div class="col-md-4">
-              <h3><b><span ng-bind="element.id"></span></b></h3>
+              <h3><span class="glyphicon glyphicon-menu-right"></span> <b><span ng-bind="element.id"></span></b></h3>
             </div>
             <div class="col-md-8" style="padding-top:12px;">
               "<span ng-bind="element.text[0].substring(0, 90)"></span>..."
             </div>
           </div>
-          
+
           <div id="{{element.id}}-inner" ng-class="{'hidden':selectedTab !== element.id + '-inner'}">
             <!--PLAYER PORTRAIT-->
-            Portrait: <input type="text" ng-model="element.portrait">    
+            Portrait: <input type="text" ng-model="element.portrait">
 
             <!--TOGGLE TYPE-->
             <label>
@@ -62,7 +73,7 @@
                 Omniscient
             </label>
             <hr>
-       
+
             <!--ADD ELEMENT TEXT-->
             <div class="dialogue-texts">
               <div style="position:relative" ng-repeat="text in element.text track by $index">
@@ -76,10 +87,10 @@
               </div>
             </div>
             <br><br>
-            
+
             <div>
               <button class="btn" ng-click="addText(element.id)">Add Text</button>
-            </div>  
+            </div>
 
             <!--ADD ELEMENT FOLLOWUPS-->
             <hr>
@@ -91,10 +102,10 @@
               </div>
             </div>
             <br><br>
-            
+
             <div>
               <button class="btn" ng-click="addFollowups(element.id)">Add Followup</button>
-            </div> 
+            </div>
             <hr>
 
             <!--ADD ELEMENT CHOICES-->
@@ -113,11 +124,11 @@
               </textarea>
               <hr>
             </div>
-            <br><br>  
+            <br><br>
 
             <div>
               <button class="btn" ng-click="addChoice(element.id)">Add Choice</button>
-            </div>  
+            </div>
 
             <!--ADD ITEMS-->
             <hr>
@@ -156,6 +167,9 @@
         </div>
       </div>
     </div>
+    <footer class="footer">
+      <a href="http://darinacosta.com" target="_blank">Darin Joseph Acosta</a>. 2016.
+    </footer>
     <script src="node_modules/angular/angular.js"></script>
     <script src="app.js"></script>
   </body>

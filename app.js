@@ -42,8 +42,8 @@ function appCtrl($scope, $http) {
     $scope.dialogueJSONString = angular.toJson($scope.dialogueJSON);
     console.log($scope.dialogueJSONString);
   };
-  $scope.dialogueJSON.name = "";
-  $scope.dialogueJSON.id = "";
+  $scope.dialogueJSON.name = "Dialogue Title";
+  $scope.dialogueJSON.id = "dialogue-title";
 
   $scope.generateId = function(){
     $scope.dialogueJSON.id = $scope.dialogueJSON.name.replace(/ /g, "-").toLowerCase();
@@ -66,7 +66,7 @@ function appCtrl($scope, $http) {
   $scope.addDialogueElement = function () {
     var elementCounter = $scope.dialogueJSON['elements'].length + 1;
     $scope.dialogueJSON.elements.push({
-      id: $scope.dialogueJSON.id + "_" + String(elementCounter), 
+      id: $scope.dialogueJSON.id + "_" + String(elementCounter),
       name: "",
       text: [''],
       type: '',
