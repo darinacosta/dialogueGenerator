@@ -26,4 +26,4 @@ Here is a sample JSON string that you can drop in to see how it works:
 9. You can add items. The sample parser adds these items to the player's inventory.
 10. You can add new dialogue elements by clicking the "Add Element" button.
 11. Click "Generate JSON" to compile the dialogue to a JSON string.
-12. If you would like to test the dialogue, click the "Test Dialogue" button.
+12. If you would like to test the dialogue, click the "Test Dialogue" button and scroll down.
