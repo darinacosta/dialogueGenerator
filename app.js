@@ -21,7 +21,7 @@ var app = angular.module("app", [])
 
 function appCtrl($scope, $http, config) {
 
-  $scope.config = config;
+  $scope.escapeQuotes = 'false';
 
   $scope.selectedTab = '';
 
@@ -53,7 +53,13 @@ function appCtrl($scope, $http, config) {
   $scope.dialogueJSON = {};
   $scope.dialogueJSONString = '';
   $scope.generateDialogueJSONString = function(){
-    $scope.dialogueJSONString = angular.toJson($scope.dialogueJSON);
+    var jsonString = JSON.stringify($scope.dialogueJSON);
+    var jsonReplace = jsonString.replace(/\'/g,"\\'");
+    if ($scope.escapeQuotes){
+      $scope.dialogueJSONString = jsonReplace;
+    } else {
+      $scope.dialogueJSONString = jsonString;
+    }
     console.log($scope.dialogueJSONString);
   };
   $scope.dialogueJSON.name = "Dialogue Title";
