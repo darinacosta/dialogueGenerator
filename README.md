@@ -1,8 +1,10 @@
 #Dialogue Generator
 
-This tool provides a user interface for building interactive text-based dialogue, and provides a framework for testing the dialogue. You can import and export JSON-formatted dialogue string. How you decide to parse the dialogue is up to you. "globals.js" provides an example of how this can be accomplished using jQuery. The tool was inspired by [this](http://thebotanistgame.com/blog/2015/02/28/dialogue-in-phaserjs.html) Botanist Game Blog post.
+This tool provides a user interface for building interactive text-based dialogue, and provides a framework for testing the dialogue. You can import and export a JSON-formatted dialogue string. How you decide to parse the dialogue is up to you. `globals.js` provides an example of how this can be accomplished using jQuery. The tool was inspired by [this](http://thebotanistgame.com/blog/2015/02/28/dialogue-in-phaserjs.html) Botanist Game Blog post.
 
-Run "npm install" after forking to install the dependencies (Angular, Bootstrap, and jQuery).
+Use it here: [darinacosta.com/dialoguegenerator](http://darinacosta.com/dialoguegenerator/)
+
+Or to install locally: run `npm install` after forking to install the dependencies (Angular, Bootstrap, and jQuery).
 
 ##Importing dialogue
 To import dialogue, simply drop a well-formatted JSON string into the "Import JSON" form and click "import".
@@ -24,4 +26,4 @@ Here is a sample JSON string that you can drop in to see how it works:
 9. You can add items. The sample parser adds these items to the player's inventory.
 10. You can add new dialogue elements by clicking the "Add Element" button.
 11. Click "Generate JSON" to compile the dialogue to a JSON string.
-12. If you would like to test the dialogue, click the "Test Dialogue" button.
+12. If you would like to test the dialogue, click the "Test Dialogue" button and scroll down.
