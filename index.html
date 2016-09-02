@@ -118,9 +118,13 @@
               <h4>Choice <span ng-bind="$index"></span>:</h4><br>
               Choice <span ng-bind="$index"></span> text:<br>
               <textarea type="text" cols="80" rows="4" ng-model="element.choices[$index].text"></textarea>
+              <br><br>
+              <div ng-repeat="(key, value) in element.choices[$index].custom">
+                {{key}}: <input type="{{value.type}}" ng-model="element.choices[$index].custom[key].value"/>
+                <br>
+              </div>
               <br>
-              Choice <span ng-bind="$index"></span> followup:
-              <input type="text" placeholder="{{dialogueJSON.id}}_" ng-model="element.choices[$index].followup"><br>
+              Followup: <input type="text" placeholder="{{dialogueJSON.id}}_" ng-model="element.choices[$index].followup"><br>
               </textarea>
               <hr>
             </div>
@@ -161,16 +165,15 @@
           <br><br>
           <textarea cols="80" rows="4" ng-bind="dialogueJSONString">
           </textarea>
+          <div class="dialogue-display"></div>
           <div class="col-md-12" style="padding:20px;text-align:center">
             <button class="btn btn-primary" ng-click="testDialogue()">Test Dialogue</button>
           </div>
         </div>
       </div>
     </div>
-    <footer class="footer">
-      <a href="http://darinacosta.com" target="_blank">Darin Joseph Acosta</a>. 2016.
-    </footer>
     <script src="node_modules/angular/angular.js"></script>
     <script src="app.js"></script>
+    <script src="config.js"></script>
   </body>
 </html>

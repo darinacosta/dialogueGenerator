@@ -3,11 +3,25 @@
   License: ISC
 */
 
+var config = {
+  'choices': {
+    'name': 'Consequences',
+    'fields': {
+      'Reputation': {
+        'type': 'number',
+        'value': 0
+      }
+    }
+  }
+};
+
 var app = angular.module("app", [])
 
-.controller('appCtrl', ['$scope', '$http', appCtrl]);
+.controller('appCtrl', ['$scope', '$http', 'config', appCtrl]);
 
-function appCtrl($scope, $http) {
+function appCtrl($scope, $http, config) {
+
+  $scope.config = config;
 
   $scope.selectedTab = '';
 
@@ -100,7 +114,12 @@ function appCtrl($scope, $http) {
     var elements = $scope.dialogueJSON.elements;
     for (var i = 0; i < elements.length; i ++){
       if (elements[i].id === elementId){
-        $scope.dialogueJSON.elements[i].choices.push({text: '', followup: ''});
+        var choice = {text: '', followup: '', custom: {}};
+        for (var field in config.choices.fields){
+          choice.custom[field] = config.choices.fields[field];
+        }
+        $scope.dialogueJSON.elements[i].choices.push(choice);
+        console.log($scope.dialogueJSON.elements[i].choices);
       }
     };
   };
